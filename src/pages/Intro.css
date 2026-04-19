@@ -1,0 +1,172 @@
+.intro {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 20px 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+/* 히어로 */
+.hero { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 16px; }
+.hero-eyebrow { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--text3); }
+
+.hero-title {
+  font-size: clamp(36px, 6vw, 64px);
+  font-weight: 900;
+  letter-spacing: 2px;
+  line-height: 1;
+}
+.fire-text     { color: var(--accent); text-shadow: 0 0 30px rgba(232,64,64,0.5); }
+.dash          { color: var(--text3); }
+.palantir-text { color: var(--text); }
+
+.hero-sub  { font-size: 15px; color: var(--text2); line-height: 1.8; max-width: 600px; }
+.hero-sub strong { color: var(--text); }
+.hero-meta { font-size: 12px; color: var(--text3); }
+
+.btn-hero {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 14px 32px;
+  border-radius: var(--radius);
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  letter-spacing: 0.5px;
+}
+.btn-hero:hover { background: #c53030; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(232,64,64,0.4); }
+
+/* 섹션 공통 */
+.section { display: flex; flex-direction: column; gap: 20px; }
+.section-title {
+  font-size: 18px; font-weight: 700;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* 레이어 카드 */
+.layers { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+@media (max-width: 600px) { .layers { grid-template-columns: 1fr; } }
+
+.layer-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: transform 0.15s;
+}
+.layer-card:hover { transform: translateY(-2px); }
+
+.layer-num   { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+.layer-icon  { font-size: 24px; }
+.layer-title { font-size: 14px; font-weight: 700; }
+.layer-desc  { font-size: 12px; color: var(--text2); line-height: 1.5; }
+
+.layer-accent .layer-num { color: var(--accent); }
+.layer-info   .layer-num { color: var(--info); }
+.layer-success.layer-num { color: var(--success); }
+.layer-warn   .layer-num { color: var(--warn); }
+.layer-accent { border-left: 3px solid var(--accent); }
+.layer-info   { border-left: 3px solid var(--info); }
+.layer-success{ border-left: 3px solid var(--success); }
+.layer-warn   { border-left: 3px solid var(--warn); }
+
+.infra-bar {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 12px 16px;
+  font-size: 12px;
+  color: var(--text2);
+  text-align: center;
+}
+
+/* 증명 */
+.proofs-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+@media (max-width: 600px) { .proofs-grid { grid-template-columns: 1fr; } }
+
+.proof-card   { display: flex; flex-direction: column; gap: 6px; }
+.proof-icon   { font-size: 22px; }
+.proof-title  { font-size: 14px; font-weight: 700; }
+.proof-desc   { font-size: 12px; color: var(--text2); line-height: 1.6; }
+
+/* 스택 테이블 */
+.stack-table { overflow: hidden; }
+.stack-row   {
+  display: flex; gap: 16px; align-items: center;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
+}
+.stack-row:last-child { border-bottom: none; }
+.stack-layer { font-size: 12px; color: var(--text3); width: 100px; flex-shrink: 0; }
+.stack-tech  { font-size: 13px; font-weight: 600; }
+
+/* CTA */
+.cta-section { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.cta-sub     { font-size: 12px; color: var(--text3); }
+
+/* ── 섹션 공통 추가 */
+.section-eyebrow { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--text3); }
+.section-desc    { font-size: 13px; color: var(--text2); line-height: 1.8; }
+.section-dark    { background: rgba(255,255,255,0.015); border-radius: var(--radius); padding: 24px; margin: 0 -24px; }
+
+/* 사고 사례 */
+.incidents-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+@media (max-width: 600px) { .incidents-grid { grid-template-columns: 1fr; } }
+
+.incident-card  { display: flex; flex-direction: column; gap: 8px; padding: 14px; }
+.incident-header {
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+}
+.incident-year     { font-size: 11px; color: var(--text3); font-family: monospace; }
+.incident-location { font-size: 14px; font-weight: 700; flex: 1; }
+.incident-casualties { font-size: 12px; }
+.incident-problem  { font-size: 12px; color: var(--text2); line-height: 1.6; }
+
+/* 정보 단절 */
+.gap-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+@media (max-width: 700px) { .gap-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px) { .gap-grid { grid-template-columns: 1fr; } }
+
+.gap-card  { display: flex; flex-direction: column; gap: 6px; padding: 14px; }
+.gap-icon  { font-size: 20px; }
+.gap-title { font-size: 13px; font-weight: 700; color: var(--warn); }
+.gap-desc  { font-size: 12px; color: var(--text2); line-height: 1.55; }
+
+.gap-quote {
+  margin-top: 8px;
+  padding: 14px 20px;
+  border-left: 3px solid var(--accent);
+  font-size: 13px;
+  color: var(--text2);
+  font-style: italic;
+  line-height: 1.7;
+  background: rgba(232,64,64,0.05);
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+/* 핵심 기능 */
+.features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+@media (max-width: 700px) { .features-grid { grid-template-columns: 1fr; } }
+
+.feature-card  { display: flex; flex-direction: column; gap: 8px; padding: 18px; }
+.feature-icon  { font-size: 26px; }
+.feature-title { font-size: 14px; font-weight: 700; }
+.feature-desc  { font-size: 12px; color: var(--text2); line-height: 1.6; flex: 1; }
+.feature-tag   {
+  display: inline-block;
+  font-size: 10px; font-weight: 600; padding: 3px 8px;
+  background: rgba(47,168,255,0.1); color: var(--info);
+  border: 1px solid rgba(47,168,255,0.2); border-radius: 4px;
+  align-self: flex-start;
+}
+
+/* CTA 업그레이드 */
+.cta-title { font-size: 20px; font-weight: 700; }
+.cta-desc  { font-size: 13px; color: var(--text2); line-height: 1.8; }

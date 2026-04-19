@@ -1,0 +1,287 @@
+.camera-grid-card {
+  border-color: rgba(0, 229, 160, 0.2);
+}
+
+/* Live dot */
+.cam-live-dot {
+  display: inline-block;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--success);
+  box-shadow: 0 0 6px var(--success);
+  animation: cam-pulse 1.2s infinite;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+@keyframes cam-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.35; }
+}
+
+.cam-badge {
+  font-size: 10px;
+  color: var(--success);
+  background: rgba(0, 229, 160, 0.1);
+  border: 1px solid rgba(0, 229, 160, 0.25);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+/* ── 확대 뷰 */
+.cam-expanded {
+  margin-bottom: 12px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid rgba(0, 229, 160, 0.3);
+}
+.cam-expanded-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 12px;
+  background: rgba(0, 229, 160, 0.08);
+}
+.cam-expanded-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--success);
+  font-family: monospace;
+}
+.cam-close {
+  font-size: 11px;
+  color: var(--text3);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 2px 6px;
+}
+.cam-close:hover { color: var(--text2); }
+.cam-expanded .thermal-feed { height: 260px; }
+
+/* ── 썸네일 그리드 */
+.cam-grid {
+  display: grid;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+.cam-grid-1 { grid-template-columns: 1fr; }
+.cam-grid-2 { grid-template-columns: 1fr 1fr; }
+.cam-grid-3, .cam-grid-4 { grid-template-columns: 1fr 1fr; }
+
+.cam-tile {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  cursor: pointer;
+  border: 1px solid var(--border);
+  transition: border-color 0.15s;
+}
+.cam-tile:hover        { border-color: rgba(0, 229, 160, 0.4); }
+.cam-tile-selected     { border-color: var(--success) !important; }
+.cam-tile .thermal-feed { height: 100px; }
+
+.cam-tile-label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 8px;
+  background: rgba(0,0,0,0.7);
+  font-size: 11px;
+  font-weight: 600;
+  color: #fff;
+  font-family: monospace;
+}
+.cam-status-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.dot-live    { background: var(--success); box-shadow: 0 0 4px var(--success); animation: cam-pulse 1.2s infinite; }
+.dot-transit { background: var(--warn); }
+
+.cam-tile-type {
+  margin-left: auto;
+  font-size: 10px;
+  color: var(--text3);
+  font-weight: 400;
+}
+
+.cam-note {
+  font-size: 10px;
+  color: var(--text3);
+  text-align: center;
+  padding-top: 4px;
+  border-top: 1px solid var(--border);
+}
+
+/* ═══════════════════════════════════════════════
+   열화상 카메라 씬 — 4가지 유형
+   ═══════════════════════════════════════════════ */
+.thermal-feed {
+  position: relative;
+  width: 100%;
+  height: 140px;
+  overflow: hidden;
+}
+
+/* 공통 요소 */
+.thermal-noise {
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  pointer-events: none;
+}
+.thermal-scanlines {
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent, transparent 2px,
+    rgba(0,0,0,0.06) 2px, rgba(0,0,0,0.06) 4px
+  );
+  pointer-events: none;
+}
+.thermal-hud {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  justify-content: space-between;
+  padding: 5px 8px;
+  pointer-events: none;
+}
+.hud-top, .hud-bottom {
+  display: flex; justify-content: space-between; align-items: center;
+}
+.hud-mode {
+  font-size: 9px; font-weight: 700; font-family: monospace;
+  color: rgba(255,255,255,0.7);
+  background: rgba(0,0,0,0.4);
+  padding: 1px 5px; border-radius: 2px;
+  letter-spacing: 0.1em;
+}
+.hud-time {
+  font-size: 9px; font-family: monospace;
+  color: rgba(255,255,255,0.65);
+}
+.hud-temp {
+  font-size: 9px; font-weight: 700; font-family: monospace;
+  color: rgba(255,255,255,0.8);
+}
+.hud-coords {
+  font-size: 8px; font-family: monospace;
+  color: rgba(255,255,255,0.45);
+}
+
+/* ── scene-fire: 화재 열화상 (펌프/탱크) */
+.scene-fire {
+  background: radial-gradient(ellipse at 60% 70%, #1a0500 0%, #0d0200 100%);
+}
+.scene-fire .thermal-heat-source {
+  position: absolute;
+  width: 60px; height: 60px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ff8c00 0%, #ff4500 40%, #8b1a00 70%, transparent 100%);
+  filter: blur(8px);
+  animation: fire-flicker 0.4s infinite alternate;
+  transform: translate(-50%, -50%);
+}
+.scene-fire .thermal-flame {
+  position: absolute;
+  width: 30px; height: 50px;
+  background: radial-gradient(ellipse at 50% 100%, #ffcc00 0%, #ff6600 50%, transparent 90%);
+  filter: blur(5px);
+  transform: translate(-50%, -50%);
+  animation: flame-dance 0.3s infinite alternate;
+}
+.scene-fire .thermal-smoke {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 50% 10%, rgba(80,40,10,0.4) 0%, transparent 60%);
+  animation: smoke-drift 3s infinite alternate;
+}
+@keyframes fire-flicker {
+  from { transform: translate(-50%,-50%) scale(1); opacity: 1; }
+  to   { transform: translate(-50%,-50%) scale(1.15); opacity: 0.85; }
+}
+@keyframes flame-dance {
+  from { transform: translate(-50%,-50%) scaleX(1); }
+  to   { transform: translate(-50%,-50%) scaleX(1.3) skewX(-5deg); }
+}
+@keyframes smoke-drift {
+  from { transform: translateX(-5px); opacity: 0.6; }
+  to   { transform: translateX(5px);  opacity: 0.9; }
+}
+
+/* ── scene-aerial: 고가/굴절 항공뷰 */
+.scene-aerial {
+  background: linear-gradient(180deg, #001a10 0%, #00100a 100%);
+}
+.scene-aerial .thermal-heat-source {
+  position: absolute;
+  width: 80px; height: 40px;
+  background: radial-gradient(ellipse, rgba(255,120,0,0.5) 0%, rgba(255,50,0,0.2) 50%, transparent 80%);
+  filter: blur(6px);
+  transform: translate(-50%, -50%);
+  animation: aerial-glow 2s infinite alternate;
+}
+.thermal-ground-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(0,255,100,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,255,100,0.06) 1px, transparent 1px);
+  background-size: 20px 20px;
+  animation: grid-scroll 8s linear infinite;
+}
+@keyframes aerial-glow {
+  from { opacity: 0.6; }
+  to   { opacity: 1; }
+}
+@keyframes grid-scroll {
+  from { background-position: 0 0; }
+  to   { background-position: 0 20px; }
+}
+
+/* ── scene-interior: 구조/구급 내부 탐색 */
+.scene-interior {
+  background: #050505;
+}
+.thermal-spotlight {
+  position: absolute;
+  width: 100px; height: 100px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,200,100,0.35) 0%, rgba(255,150,50,0.1) 40%, transparent 70%);
+  filter: blur(10px);
+  transform: translate(-50%, -50%);
+  animation: spotlight-sweep 4s ease-in-out infinite;
+}
+@keyframes spotlight-sweep {
+  0%, 100% { transform: translate(-50%,-50%); }
+  33%       { transform: translate(-50%,-50%) translateX(20px) translateY(-10px); }
+  66%       { transform: translate(-50%,-50%) translateX(-15px) translateY(15px); }
+}
+
+/* ── scene-command: 지휘 열화상 (녹색 계열) */
+.scene-command {
+  background: radial-gradient(ellipse at center, #001a08 0%, #000d04 100%);
+}
+.scene-command .thermal-heat-source {
+  position: absolute;
+  width: 120px; height: 80px;
+  background: radial-gradient(ellipse, rgba(0,255,80,0.15) 0%, rgba(0,200,50,0.05) 60%, transparent 90%);
+  filter: blur(12px);
+  transform: translate(-50%, -50%);
+  animation: cmd-pulse 3s ease-in-out infinite;
+}
+@keyframes cmd-pulse {
+  0%, 100% { opacity: 0.6; transform: translate(-50%,-50%) scale(1); }
+  50%       { opacity: 1;   transform: translate(-50%,-50%) scale(1.1); }
+}
+
+/* ── 오프라인 */
+.thermal-offline {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(0,0,0,0.8);
+  color: rgba(255,255,255,0.3);
+  font-size: 11px;
+  font-weight: 700;
+  font-family: monospace;
+  letter-spacing: 0.2em;
+}

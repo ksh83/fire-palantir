@@ -1,0 +1,148 @@
+/* ── FIRE-PALANTIR 전역 스타일 ─────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:        #0a0d12;
+  --surface:   #111620;
+  --surface2:  #1a2030;
+  --border:    #1e2a3a;
+  --accent:    #e84040;
+  --accent2:   #ff6b35;
+  --info:      #2fa8ff;
+  --success:   #00e5a0;
+  --warn:      #ffb300;
+  --danger:    #ff4422;
+  --text:      #e8ecf0;
+  --text2:     #8a9bb0;
+  --text3:     #4a5568;
+  --radius:    8px;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Pretendard', 'Noto Sans KR', -apple-system, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+.app { display: flex; flex-direction: column; min-height: 100vh; }
+
+/* ── 상단 내비게이션 */
+.topnav {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 0 20px;
+  height: 52px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-brand { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.brand-icon { font-size: 20px; }
+.brand-name { font-size: 16px; font-weight: 700; color: var(--accent); letter-spacing: 1px; }
+.brand-sub  { font-size: 11px; color: var(--text3); }
+
+.nav-links { display: flex; gap: 4px; }
+.nav-links button {
+  background: none;
+  border: none;
+  color: var(--text2);
+  padding: 6px 14px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-size: 13px;
+  transition: all 0.15s;
+}
+.nav-links button:hover  { background: var(--surface2); color: var(--text); }
+.nav-links button.active { background: var(--accent); color: #fff; font-weight: 600; }
+
+.nav-status {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text3);
+  font-size: 12px;
+}
+.status-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--text3); }
+.status-dot.live {
+  background: var(--success);
+  box-shadow: 0 0 6px var(--success);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+
+/* ── 메인 */
+.main-content { flex: 1; padding: 20px; overflow-y: auto; }
+
+/* ── 카드 */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+}
+.card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+.card-title { font-size: 13px; font-weight: 600; color: var(--text2); text-transform: uppercase; letter-spacing: 0.5px; }
+
+/* ── 배지 */
+.badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; text-transform: uppercase; }
+.badge-fire   { background: rgba(232,64,64,0.2); color: var(--accent); }
+.badge-rescue { background: rgba(47,168,255,0.2); color: var(--info); }
+.badge-ems    { background: rgba(0,229,160,0.2); color: var(--success); }
+.badge-hazmat { background: rgba(255,179,0,0.2); color: var(--warn); }
+
+.sev-1 { color: var(--text3); }
+.sev-2 { color: #64b5f6; }
+.sev-3 { color: var(--warn); }
+.sev-4 { color: var(--accent2); }
+.sev-5 { color: var(--accent); font-weight: 700; }
+
+.status-badge { font-size: 11px; padding: 2px 8px; border-radius: 20px; font-weight: 600; }
+.status-standby    { background: rgba(0,229,160,0.15); color: var(--success); }
+.status-dispatched { background: rgba(255,179,0,0.15); color: var(--warn); }
+.status-onscene    { background: rgba(232,64,64,0.15); color: var(--accent); }
+.status-returning  { background: rgba(47,168,255,0.15); color: var(--info); }
+.status-pending    { background: rgba(138,155,176,0.15); color: var(--text2); }
+.status-controlled { background: rgba(100,181,246,0.15); color: #64b5f6; }
+.status-closed     { background: rgba(74,85,104,0.15); color: var(--text3); }
+.status-maintenance{ background: rgba(255,107,53,0.15); color: var(--accent2); }
+
+/* ── 버튼 */
+.btn { display: inline-flex; align-items: center; gap: 6px; padding: 7px 14px; border-radius: var(--radius); border: none; cursor: pointer; font-size: 13px; font-weight: 600; transition: all 0.15s; }
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-primary:hover { background: #c93535; }
+.btn-ghost   { background: var(--surface2); color: var(--text2); border: 1px solid var(--border); }
+.btn-ghost:hover { color: var(--text); }
+.btn-ai      { background: linear-gradient(135deg, #1a2a4a, #0a1a3a); color: var(--info); border: 1px solid #2a3a5a; }
+.btn-ai:hover { background: linear-gradient(135deg, #1e3050, #0e2040); }
+.btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+/* ── 그리드 */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; }
+
+/* ── 로딩 */
+.loading { display: flex; align-items: center; justify-content: center; padding: 60px; color: var(--text3); }
+.spinner { width: 20px; height: 20px; border: 2px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; margin-right: 10px; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.error-msg { background: rgba(232,64,64,0.1); border: 1px solid rgba(232,64,64,0.3); border-radius: var(--radius); padding: 12px 16px; color: var(--accent); margin-bottom: 16px; }
+
+hr { border: none; border-top: 1px solid var(--border); margin: 16px 0; }
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text3); }
+
+.setup-banner { background: rgba(255,179,0,0.1); border: 1px solid rgba(255,179,0,0.3); border-radius: var(--radius); padding: 20px; text-align: center; margin-bottom: 20px; }
+.setup-banner h3 { color: var(--warn); margin-bottom: 8px; }
+.setup-banner code { display: block; background: var(--surface2); border-radius: 4px; padding: 8px 12px; font-family: monospace; font-size: 12px; color: var(--text2); margin-top: 8px; text-align: left; }
